@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Calgary Girls Trip 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --pink-main:#FF4081;
+  --pink-soft:#FFB6C1;
+  --pink-bg:#FFF5F8;
+  --pink-dark:#D6336C;
+  --text:#432634;
+  --white:#ffffff;
+  --shadow:0 12px 40px rgba(214,51,108,0.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(to bottom,#FFF5F8,#ffffff);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+.hero{
+  min-height:85vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(rgba(255,245,248,0.75),rgba(255,245,248,0.92)),
+  url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1600&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  z-index:-2;
+}
+
+.hero::after{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:rgba(255,255,255,0.25);
+  filter:blur(80px);
+  border-radius:50%;
+  top:-120px;
+  right:-120px;
+  z-index:-1;
+}
+
+.hero-content{
+  max-width:850px;
+}
+
+.hero-sub{
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:0.8rem;
+  color:var(--pink-dark);
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:5rem;
+  line-height:0.95;
+  color:var(--pink-dark);
+}
+
+.hero h1 span{
+  color:var(--pink-main);
+  font-style:italic;
+  font-weight:400;
+}
+
+.hero p{
+  margin:25px auto;
+  max-width:650px;
+  font-size:1.05rem;
+  color:#6b4c59;
+  line-height:1.8;
+}
+
+.hero button{
+  padding:15px 35px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(to right,var(--pink-main),var(--pink-dark));
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.35s;
+  box-shadow:var(--shadow);
+}
+
+.hero button:hover{
+  transform:translateY(-4px);
+}
+
+.container{
+  width:92%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin:70px 0 40px;
+}
+
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;
+  color:var(--pink-dark);
+}
+
+.section-title p{
+  margin-top:10px;
+  color:#8d6b77;
+}
+
+.budget-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:20px;
+}
+
+.budget-card{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,182,193,0.4);
+  border-radius:24px;
+  padding:30px 20px;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:var(--shadow);
+}
+
+.budget-card:hover{
+  transform:translateY(-6px);
+}
+
+.budget-card h3{
+  color:var(--pink-dark);
+  margin-bottom:10px;
+  font-size:1rem;
+}
+
+.budget-card span{
+  color:var(--pink-main);
+  font-size:2rem;
+  font-weight:700;
+}
+
+.airbnb-box{
+  margin-top:25px;
+  background:linear-gradient(to right,#ffe4ed,#fff7fa);
+  padding:18px 25px;
+  border-radius:18px;
+  text-align:center;
+  border:1px solid rgba(255,182,193,0.4);
+}
+
+.airbnb-box strong{
+  color:var(--pink-dark);
+}
+
+.timeline{
+  margin-top:60px;
+}
+
+.day-card{
+  background:white;
+  border-radius:30px;
+  overflow:hidden;
+  margin-bottom:35px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,182,193,0.25);
+}
+
+.day-header{
+  padding:28px 35px;
+  background:linear-gradient(to right,var(--pink-main),var(--pink-dark));
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+}
+
+.day-header h3{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+}
+
+.day-header p{
+  opacity:0.9;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:0.8rem;
+}
+
+.day-content{
+  padding:35px;
+  display:none;
+  animation:fadeIn 0.4s ease;
+}
+
+.day-content.active{
+  display:block;
+}
+
+.time-block{
+  margin-bottom:35px;
+}
+
+.time-block h4{
+  color:var(--pink-dark);
+  margin-bottom:18px;
+  font-size:1.1rem;
+}
+
+.fixed-item{
+  background:#FFF8FA;
+  padding:15px 18px;
+  border-radius:16px;
+  margin-bottom:12px;
+  border:1px solid rgba(255,182,193,0.3);
+}
+
+.fixed-item span{
+  color:var(--pink-main);
+  font-weight:600;
+  display:block;
+  margin-bottom:4px;
+}
+
+.option-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+}
+
+.option-card{
+  background:linear-gradient(to bottom,#fff,#fff7fa);
+  border:1px solid rgba(255,182,193,0.4);
+  border-radius:22px;
+  overflow:hidden;
+  transition:0.35s;
+  cursor:pointer;
+}
+
+.option-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow);
+}
+
+.option-card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.option-content{
+  padding:18px;
+}
+
+.option-content h5{
+  color:var(--pink-dark);
+  font-size:1rem;
+  margin-bottom:8px;
+}
+
+.option-content p{
+  font-size:0.92rem;
+  color:#7a5f69;
+  line-height:1.6;
+}
+
+.note{
+  margin-top:15px;
+  padding:18px;
+  border-left:4px solid var(--pink-main);
+  background:#fff5f8;
+  border-radius:0 16px 16px 0;
+  color:#7a5f69;
+  font-size:0.92rem;
+}
+
+.footer{
+  text-align:center;
+  padding:80px 20px 50px;
+}
+
+.footer h2{
+  font-family:'Playfair Display',serif;
+  color:var(--pink-dark);
+  font-size:2rem;
+  margin-bottom:10px;
+}
+
+.footer p{
+  color:#8d6b77;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:3.2rem;
+}
+
+.day-header{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.day-content{
+  padding:25px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-sub">
+      Calgary • May 21–24 • 2026
+    </div>
+
+    <h1>
+      Girls <span>Trip</span>
+    </h1>
+
+    <p>
+      A four-day Calgary getaway filled with aesthetic cafés, downtown nights,
+      scenic Banff views, curated dinners, late-night conversations,
+      and soft spring energy.
+    </p>
+
+    <button onclick="scrollToSection()">
+      View Itinerary
+    </button>
+
+  </div>
+
+</section>
+
+<div class="container">
+
+  <div class="section-title">
+    <h2>Trip Budget</h2>
+    <p>Planned budget breakdown for the weekend</p>
+  </div>
+
+  <div class="budget-grid">
+
+    <div class="budget-card">
+      <h3>Airbnb</h3>
+      <span>$450</span>
+    </div>
+
+    <div class="budget-card">
+      <h3>Gas</h3>
+      <span>$160</span>
+    </div>
+
+    <div class="budget-card">
+      <h3>Food</h3>
+      <span>$450</span>
+    </div>
+
+    <div class="budget-card">
+      <h3>Activities</h3>
+      <span>$150</span>
+    </div>
+
+    <div class="budget-card">
+      <h3>Uber</h3>
+      <span>$100</span>
+    </div>
+
+    <div class="budget-card">
+      <h3>Total</h3>
+      <span>$1350</span>
+    </div>
+
+  </div>
+
+  <div class="airbnb-box">
+    <strong>Airbnb:</strong>
+    126B Sage Bluff Rise Northwest, Calgary
+  </div>
+
+  <div class="section-title" id="itinerary">
+    <h2>Full Itinerary</h2>
+    <p>Click each day to expand the schedule</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- DAY 1 -->
+
+    <div class="day-card">
+
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <h3>May 21</h3>
+          <p>Travel Day & Downtown Night</p>
+        </div>
+        <span>01</span>
+      </div>
+
+      <div class="day-content">
+
+        <div class="time-block">
+
+          <h4>Departure Schedule</h4>
+
+          <div class="fixed-item">
+            <span>11:10 AM</span>
+            Costco stop for snacks, drinks, skincare, and roadtrip essentials.
+          </div>
+
+          <div class="fixed-item">
+            <span>11:30 AM</span>
+            Pick up Muna and finalize bags before leaving.
+          </div>
+
+          <div class="fixed-item">
+            <span>12:00 PM</span>
+            Coffee stop before the drive.
+          </div>
+
+          <div class="fixed-item">
+            <span>12:20 PM</span>
+            Edmonton to Calgary roadtrip begins.
+          </div>
+
+          <div class="fixed-item">
+            <span>4:00 PM</span>
+            Check into Airbnb and settle in for the evening.
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Coffee Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Common Ground</h5>
+                <p>
+                  Cozy atmosphere with warm lighting and relaxed coffee-shop energy.
+                  A calm start before the drive.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>NOMI Cafe</h5>
+                <p>
+                  Minimal Korean-inspired café with aesthetic drinks,
+                  pastries, and soft interiors.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Dinner Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Fenyk Coffee & Social</h5>
+                <p>
+                  Scandinavian-inspired cocktail café with candlelit interiors
+                  and elevated comfort food.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Fortunas Row</h5>
+                <p>
+                  Stylish Italian-American dinner spot with shareable plates
+                  and lively social atmosphere.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Nightlife Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Bridgette Bar</h5>
+                <p>
+                  Retro-inspired cocktail bar with incredible drinks
+                  and upscale downtown energy.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a8e?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Bleu Nightclub</h5>
+                <p>
+                  Luxury nightlife atmosphere with DJs,
+                  dancing, and VIP-style interiors.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="note">
+            Late-night snack run around 9:30 PM before relaxing back at the Airbnb.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DAY 2 -->
+
+    <div class="day-card">
+
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <h3>May 22</h3>
+          <p>Photoshoot Day & Club Night</p>
+        </div>
+        <span>02</span>
+      </div>
+
+      <div class="day-content">
+
+        <div class="time-block">
+
+          <h4>Morning Activities</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Calgary Zoo</h5>
+                <p>
+                  Relaxed walking day with greenery, flowers,
+                  and springtime photo opportunities.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Marda Loop</h5>
+                <p>
+                  Boutique shopping, cafés, and aesthetic neighborhood exploring.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Photoshoot Locations</h4>
+
+          <div class="note">
+            Suggested locations include Peace Bridge, Bow River pathways,
+            downtown rooftops, East Village murals, and Crescent Heights viewpoints.
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Dinner Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>BARBARELLA</h5>
+                <p>
+                  Retro-glam interiors, cocktails, and lively girls-night atmosphere.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Ryuko Japanese Kitchen + Bar</h5>
+                <p>
+                  Sleek Japanese fusion restaurant with sushi,
+                  cocktails, and modern interiors.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DAY 3 -->
+
+    <div class="day-card">
+
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <h3>May 23</h3>
+          <p>Banff Adventure Day</p>
+        </div>
+        <span>03</span>
+      </div>
+
+      <div class="day-content">
+
+        <div class="time-block">
+
+          <h4>Adventure Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Banff & Lake Louise</h5>
+                <p>
+                  Scenic mountain escape with turquoise lakes,
+                  cafés, shopping, and Rocky Mountain views.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Banff Upper Hot Springs</h5>
+                <p>
+                  Relaxing mountain hot springs experience
+                  surrounded by panoramic alpine scenery.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Dinner & Lounge</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>L’olivo Cichetti & Lounge</h5>
+                <p>
+                  Chic Italian small plates, wine, and upscale evening atmosphere.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Sweet Loretta</h5>
+                <p>
+                  Artsy cocktail lounge with creative drinks
+                  and relaxed late-night energy.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="note">
+            Saturday night is the main nightlife night — coordinate outfits,
+            reservations, and Ubers in advance.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DAY 4 -->
+
+    <div class="day-card">
+
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <h3>May 24</h3>
+          <p>Slow Morning & Drive Home</p>
+        </div>
+        <span>04</span>
+      </div>
+
+      <div class="day-content">
+
+        <div class="time-block">
+
+          <h4>Morning Plans</h4>
+
+          <div class="fixed-item">
+            <span>Late Morning</span>
+            Slow morning at the Airbnb, pack bags,
+            recap the trip, and get ready for brunch.
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Brunch Options</h4>
+
+          <div class="option-grid">
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>NOMI Cafe</h5>
+                <p>
+                  Aesthetic brunch destination with lattes,
+                  pastries, and minimal interiors.
+                </p>
+              </div>
+            </div>
+
+            <div class="option-card">
+              <img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=1200&auto=format&fit=crop">
+              <div class="option-content">
+                <h5>Porch</h5>
+                <p>
+                  Elevated brunch with warm interiors,
+                  comfort food, and relaxed Sunday energy.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="time-block">
+
+          <h4>Drive Home</h4>
+
+          <div class="fixed-item">
+            <span>Before Leaving</span>
+            Coffee stop and final Costco run if needed.
+          </div>
+
+          <div class="fixed-item">
+            <span>6:00 PM</span>
+            Head back to Edmonton with snacks,
+            playlists, and post-trip conversations.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="footer">
+  <h2>Calgary 2026</h2>
+  <p>
+    Soft spring nights, downtown lights, mountain views,
+    and unforgettable memories.
+  </p>
+</footer>
+
+<script>
+
+function toggleDay(element){
+
+  const content = element.nextElementSibling;
+
+  if(content.classList.contains('active')){
+    content.classList.remove('active');
+  } else {
+    content.classList.add('active');
+  }
+
+}
+
+function scrollToSection(){
+
+  document.getElementById('itinerary').scrollIntoView({
+    behavior:'smooth'
+  });
+
+}
+
+</script>
+
+</body>
+</html>
